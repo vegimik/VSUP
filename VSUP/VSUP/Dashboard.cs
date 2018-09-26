@@ -177,26 +177,26 @@ namespace VSUP
             {
                 case 0:
                     //Period 08:00 - 10:00
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID+"["+ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     break;
                 case 1:
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     //Period 10:00 - 12:00
                     break;
                 case 2:
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     //Period 12:00 - 14:00
                     break;
                 case 3:
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     //Period 14:00 - 16:00
                     break;
                 case 4:
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     //Period 16:00 - 18:00
                     break;
                 case 5:
-                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID) : (listData[i].CourseID);
+                    dataUpload[periodNumber, dayNumber] = (dataUpload[periodNumber, dayNumber] != null) ? (dataUpload[periodNumber, dayNumber] + ", " + listData[i].CourseID+"["+ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]") : (listData[i].CourseID + "[" + ConvertFromCourseIDToTeacherId(listData[i].CourseID) + "]");
                     //Period 18:00 - 20:00
                     break;
             }
@@ -235,6 +235,20 @@ namespace VSUP
             dataGridView1_DataUpload(dataUpload[5, 0], dataUpload[5, 1], dataUpload[5, 2], dataUpload[5, 3], dataUpload[5, 4]);
 
             dataGridView1_HeaderCell_Name();
+        }
+
+        public string ConvertFromCourseIDToTeacherId(string CourseId)
+        {
+            string teacherNumber = "";
+            for (int i = 0; i < objInstance.courses.courseList.Count; i++)
+            {
+                if (objInstance.courses.courseList[i].id == CourseId)
+                {
+                    teacherNumber = objInstance.courses.courseList[i].teacher;
+                    break;
+                }
+            }
+            return teacherNumber;
         }
 
         public void TransferDataBetweenClasses()
