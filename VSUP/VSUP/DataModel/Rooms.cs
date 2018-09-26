@@ -10,13 +10,19 @@ namespace VSUP.DataModel
     
     public class Rooms
     {
-        public List<Room> roomList = new List<Room>();
+        public List<Room> roomList = new List<Room>();// { get; set; }
+
+        //public List<Room> room { get; set; }
+        //public Rooms() => room = new List<Room>();
     }
 
     public class Room
-    {        
-        public string id { get; set; }        
-        public string size { get; set; }        
+    {
+        
+        public string id { get; set; }
+        
+        public string size { get; set; }
+        
         public string building { get; set; }
 
         public Room(string id, string size, string building)

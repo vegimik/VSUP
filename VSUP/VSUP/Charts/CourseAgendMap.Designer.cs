@@ -1,6 +1,6 @@
-﻿namespace VSUP.Charts.Other
+﻿namespace VSUP.Charts
 {
-    partial class TeacherAgendMap
+    partial class CourseAgendMap
     {
         /// <summary>
         /// Required designer variable.

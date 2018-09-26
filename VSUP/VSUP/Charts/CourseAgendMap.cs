@@ -1,8 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using VSUP.DataModel;
-using VSUP.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +11,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using VSUP.DataModel;
+using VSUP.Services;
 
-namespace VSUP.Charts.Other
+namespace VSUP.Charts
 {
-    public partial class TeacherAgendMap : Form
+    public partial class CourseAgendMap : Form
     {
         public static Instance objInstance = new Instance();
 
-        public TeacherAgendMap()
+        public CourseAgendMap()
         {
             InitializeComponent();
             SetDataComboBox();
@@ -38,7 +38,7 @@ namespace VSUP.Charts.Other
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 0, 255), .5),
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 0, 255), .75),
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 0, 255), 1)
-                    
+
                 }
             });
 
@@ -73,7 +73,7 @@ namespace VSUP.Charts.Other
 
         }
 
-        
+
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
@@ -85,7 +85,8 @@ namespace VSUP.Charts.Other
             try
             {
                 cartesianChart1.Series.Clear();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -106,7 +107,7 @@ namespace VSUP.Charts.Other
                     {
                         Values = heatPoints,
                         DataLabels = false,
-                        Title= TeacherAgendList.teacherAgends[i].teacherId,
+                        Title = TeacherAgendList.teacherAgends[i].teacherId,
 
                         //The GradientStopCollection is optional
                         //If you do not set this property, LiveCharts will set a gradient

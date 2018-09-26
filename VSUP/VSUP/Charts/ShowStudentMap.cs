@@ -1,7 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using VSUP.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using VSUP.Services;
 
 namespace VSUP.Charts
 {
@@ -31,11 +31,11 @@ namespace VSUP.Charts
                 ,
                 GradientStopCollection = new GradientStopCollection
                 {
-                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 0, 255), 0),                   
-                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 128, 128), .25) ,                  
-                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 255, 0), .5),                 
-                    new GradientStop(System.Windows.Media.Color.FromRgb(128, 128, 0), .75),                  
-                    new GradientStop(System.Windows.Media.Color.FromRgb(255, 0, 0), 1)                                       
+                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 0, 255), 0),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 128, 128), .25) ,
+                    new GradientStop(System.Windows.Media.Color.FromRgb(0, 255, 0), .5),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(128, 128, 0), .75),
+                    new GradientStop(System.Windows.Media.Color.FromRgb(255, 0, 0), 1)
                 }
             });
 
@@ -73,7 +73,7 @@ namespace VSUP.Charts
         public ChartValues<HeatPoint> ChartValuesList(int[,] numberStudentMap)
         {
             ChartValues<HeatPoint> heatPoints = new ChartValues<HeatPoint>();
-            for(int i=0; i<6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 HeatPoint HeatPoint0 = new HeatPoint(i, 0, numberStudentMap[i, 0]);
                 HeatPoint HeatPoint1 = new HeatPoint(i, 1, numberStudentMap[i, 1]);

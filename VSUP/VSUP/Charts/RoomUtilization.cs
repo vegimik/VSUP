@@ -1,8 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using VSUP.Charts;
-using VSUP.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VSUP.Services;
 
-namespace VSUP
+namespace VSUP.Charts
 {
     public partial class RoomUtilization : Form
     {
@@ -35,15 +34,15 @@ namespace VSUP
         {
             cartesianChart1.Series.Add(new ColumnSeries
             {
-                Values = ChartValuesList()                
+                Values = ChartValuesList()
                 ,
                 DataLabels = true,
-                LabelPoint = point => point.Y + " hours \n per week ("+ (point.Y*100/30.0).ToString("F1", CultureInfo.InvariantCulture) + ")%"
+                LabelPoint = point => point.Y + " hours \n per week (" + (point.Y * 100 / 30.0).ToString("F1", CultureInfo.InvariantCulture) + ")%"
             });
 
             cartesianChart1.AxisX.Add(new Axis
             {
-                Labels = LabelRoomsList(listData)               
+                Labels = LabelRoomsList(listData)
                 ,
                 Separator = new Separator // force the separator step to 1, so it always display all labels
                 {
@@ -68,12 +67,13 @@ namespace VSUP
 
         public ChartValues<ObservableValue> ChartValuesList() // Values for room utilization
         {
-            ChartValues<ObservableValue> cvOV=new ChartValues<ObservableValue>();
+            ChartValues<ObservableValue> cvOV = new ChartValues<ObservableValue>();
             int[] listValue = ValuesForRoom(listData);
-            for(int i=0; i< listValue.Length; i++)
+            for (int i = 0; i < listValue.Length; i++)
             {
                 cvOV.Add(new ObservableValue(listValue[i]));
-            }return cvOV;
+            }
+            return cvOV;
         }
 
         public string[] LabelRoomsList(List<DataSolution> listData)
@@ -82,7 +82,7 @@ namespace VSUP
             List<string> listDataLabelRoomsRepeted = new List<string>();
             List<string> listDataLabelRoomsRepetedPlusTotal = new List<string>();
 
-            for(int i=0; i<listData.Count; i++)
+            for (int i = 0; i < listData.Count; i++)
             {
                 listDataLabelRoomsRepeted.Add(listData[i].RoomRef);
             }
@@ -100,15 +100,15 @@ namespace VSUP
         {
             int k = listDataRepeted.Distinct().Count();
             List<string> _valuesForRoomList = listDataRepeted.Distinct().ToList();
-            int[] _valuesForRoom = new int[k+1];
+            int[] _valuesForRoom = new int[k + 1];
 
-            for(int i=0; i<k; i++)
+            for (int i = 0; i < k; i++)
             {
                 RoomClass objRoomClass = new RoomClass();
-                objRoomClass.RoomRef = _valuesForRoomList[i];                
+                objRoomClass.RoomRef = _valuesForRoomList[i];
                 for (int j = 0; j < listData.Count; j++)
                 {
-                    if(_valuesForRoomList[i]==listData[j].RoomRef)
+                    if (_valuesForRoomList[i] == listData[j].RoomRef)
                     {
                         objRoomClass.RoomValueUtil += 1;
                     }
@@ -122,7 +122,7 @@ namespace VSUP
             double total = 0;
             for (int i = 0; i < k; i++)
             {
-                total+= objRoomUtilizationClass.RoomUtilizationList[i].RoomValueUtil;
+                total += objRoomUtilizationClass.RoomUtilizationList[i].RoomValueUtil;
             }
             total = total / k;
 
@@ -130,10 +130,10 @@ namespace VSUP
             roomClassTotal.RoomRef = "Total";
             roomClassTotal.RoomValueUtil = Int32.Parse(total.ToString("F0", CultureInfo.InvariantCulture));
             objRoomUtilizationClass.RoomUtilizationList.Add(roomClassTotal);
-            
+
 
             //Set value in "ordinateY"
-            for (int i=0; i<k+1; i++)
+            for (int i = 0; i < k + 1; i++)
             {
                 _valuesForRoom[i] = objRoomUtilizationClass.RoomUtilizationList[i].RoomValueUtil;
             }

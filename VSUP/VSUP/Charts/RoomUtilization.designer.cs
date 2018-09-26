@@ -1,4 +1,4 @@
-﻿namespace VSUP
+﻿namespace VSUP.Charts
 {
     partial class RoomUtilization
     {
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cartesianChart1
@@ -42,23 +41,12 @@
             this.cartesianChart1.Text = "cartesianChart1";
             this.cartesianChart1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart1_ChildChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(615, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Show in percetage";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // RoomUtilization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(802, 364);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.cartesianChart1);
             this.Name = "RoomUtilization";
             this.Text = "Room utilization";
@@ -71,6 +59,5 @@
 
 
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
-        private System.Windows.Forms.Button button1;
     }
 }

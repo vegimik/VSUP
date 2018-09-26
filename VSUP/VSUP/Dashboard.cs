@@ -1,6 +1,4 @@
-﻿using VSUP.Services;
-using VSUP.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VSUP.Charts;
-using VSUP.Charts.Other;
+using VSUP.DataModel;
+using VSUP.Services;
 
 namespace VSUP
 {
     public partial class Dashboard : Form
     {
+        //public Dashboard()
         public Dashboard()
         {
             InitializeComponent();
@@ -23,11 +23,11 @@ namespace VSUP
         DataSolution dS = new DataSolution();
         Instance objInstance = new Instance();
         List<DataSolution> listData = new List<DataSolution>();
-        string[,] dataUpload = new string[6,5];
+        string[,] dataUpload = new string[6, 5];
 
 
         private void Dashboard_Load(object sender, EventArgs e)
-        {   
+        {
 
             dataGridView1_Design();
             dataGridView1_HeaderCell_Name();
@@ -39,8 +39,8 @@ namespace VSUP
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            if(e.RowIndex==2 && e.ColumnIndex==2)
+
+            if (e.RowIndex == 2 && e.ColumnIndex == 2)
             {
                 MessageBox.Show("2x2");
             }
@@ -51,12 +51,12 @@ namespace VSUP
         private void mouse_Hover(object sender, EventArgs e)
         {
 
-            
+
         }
 
         private void dataGridView1_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            
+
         }
 
         private void dataGridView1_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -66,8 +66,8 @@ namespace VSUP
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            
-            if(e.RowIndex == 3&& e.ColumnIndex == 3)
+
+            if (e.RowIndex == 3 && e.ColumnIndex == 3)
             {
                 //dataGridView1.Rows[3].Cells[3].Style.BackColor = Color.Red;
             }
@@ -75,8 +75,8 @@ namespace VSUP
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            
-            
+
+
         }
 
         private void dataGridView1_Design()
@@ -92,14 +92,14 @@ namespace VSUP
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            for(int i=1; i<=6; i=i+2)
+            for (int i = 1; i <= 6; i = i + 2)
             {
                 try
                 {
                     for (int j = 0; j < 5; j++)
                         dataGridView1.Rows[i].Cells[j].Style.BackColor = Color.FromArgb(238, 239, 249);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     //MessageBox.Show("Error message to Design " + e.Message);
                 }
@@ -118,7 +118,7 @@ namespace VSUP
                 dataGridView1.Rows[4].HeaderCell.Value = "16:00 - 18:00";
                 dataGridView1.Rows[5].HeaderCell.Value = "18:00 - 20:00";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //MessageBox.Show("Error message to HeaderCell_Name " + e.Message);
             }
@@ -218,8 +218,8 @@ namespace VSUP
                 button2.Text = "Uploaded";
             }
 
-            TransferDataBetweenClasses();                  
-            
+            TransferDataBetweenClasses();
+
         }
 
         public void ShowDataGridViewData()
@@ -242,7 +242,7 @@ namespace VSUP
             //MessageBox.Show("GJITHSESIII DUHET NDREQUR: Duhet ta ndryshojme listen e shenimve e sepse kur kursey jane doubke duhet te vendoset edhe diten tjeter");
 
             RoomUtilization.listData = listData;
-            
+
             StudentMapList objStudentMapList = new StudentMapList();
             objStudentMapList.SetDataToMyProperty(listData);
 
@@ -250,24 +250,23 @@ namespace VSUP
             TeacherAgendList.objInstance = objInstance;
             TeacherAgendList.teacherAgends = TeacherAgendList.TeacherAgendAllList();
 
-            
 
-            //StudentMapList studentMapList111 = new StudentMapList();
-            //List<StudentMap> ssssss = studentMapList111.StudentMapListUnGruped();
-            //int[,] ii = studentMapList111.FindNumberStudentMap();
+
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             ReadXMLFile readXMLFile = new ReadXMLFile();
-            objInstance=readXMLFile.UploadXML();
+            objInstance = readXMLFile.UploadXML();
             StudentMapList.objInstance = objInstance;
-            TeacherAgendMap.objInstance = objInstance;
-            if (objInstance.name!=null)
+            CourseAgendMap.objInstance = objInstance;
+            if (objInstance.name != null)
             {
                 button1.Enabled = false;
                 button1.Text = "Uploaded";
-            }            
+            }
 
         }
 
@@ -296,14 +295,14 @@ namespace VSUP
                     }
                     j++;
                 }
-            }          
+            }
 
 
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
 
         }
 
@@ -313,22 +312,22 @@ namespace VSUP
             //List<string> LabelRoomsListttt = FreeRoomList.LabelRoomsList(listData);
             //List<PeriodDayPerRoom> SetPeriodDayPerRoomList = FreeRoomList.SetPeriodDayPerRoomList("rB");
             //FreeRoomList.setPeriodDayPerAllRoomsList = FreeRoomList.SetPeriodDayPerAllRoomsList();
-            roomUtilization.Show();           
+            roomUtilization.Show();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
-            new TeacherAgendMap().Show();
+
+            new CourseAgendMap().Show();
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
-            
-            
+
+
+
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -341,7 +340,7 @@ namespace VSUP
         {
             MessageBox.Show("Its OK");
 
-            
+
 
 
         }
@@ -364,11 +363,6 @@ namespace VSUP
         private void roundedButton1_Click(object sender, EventArgs e)
         {
             new FreeRooms().Show();
-        }
-
-        private void Dashboard_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

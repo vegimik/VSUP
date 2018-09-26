@@ -1,7 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using VSUP.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using VSUP.Services;
 
 namespace VSUP.Charts
 {
@@ -27,7 +27,7 @@ namespace VSUP.Charts
             SetPeriodDayPerAllRoomsListModifed();
 
             int i = -1;
-            string[] aa ={ "a", "aa" };
+            string[] aa = { "a", "aa" };
 
             cartesianChart1.Series.Add(new HeatSeries
             {
@@ -46,7 +46,7 @@ namespace VSUP.Charts
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 255, 0), .5),
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 255, 0), .75),
                     new GradientStop(System.Windows.Media.Color.FromRgb(0, 255, 0), 1),
-                    
+
 
                 }
                 //GradientStopCollection = new GradientStopCollection
@@ -90,7 +90,7 @@ namespace VSUP.Charts
                 }
             });
 
-            
+
 
         }
 
@@ -108,10 +108,10 @@ namespace VSUP.Charts
             {
                 for (int j = 0; j < setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom.Count; j++)
                 {
-                    HeatPoint HeatPoint0 = new HeatPoint(setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].period, setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].day, i*2);
+                    HeatPoint HeatPoint0 = new HeatPoint(setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].period, setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].day, i * 2);
 
                     heatPoints.Add(HeatPoint0);
-                    
+
                 }
 
             }
@@ -126,9 +126,9 @@ namespace VSUP.Charts
 
         public void SetPeriodDayPerAllRoomsListModifed()
         {
-                                //kjo perfshin vetem ato qe jane nen 30
-            List<RoomListWithCells> _setPeriodDayPerAllRoomsList= new List<RoomListWithCells>();
-            List<RoomListWithCells> _setPeriodDayPerAllRoomsModifed= new List<RoomListWithCells>();
+            //kjo perfshin vetem ato qe jane nen 30
+            List<RoomListWithCells> _setPeriodDayPerAllRoomsList = new List<RoomListWithCells>();
+            List<RoomListWithCells> _setPeriodDayPerAllRoomsModifed = new List<RoomListWithCells>();
 
             FreeRoomList objfreeRoomList = new FreeRoomList();
 
@@ -182,18 +182,18 @@ namespace VSUP.Charts
 
                         //for (int m = 0; m < objfreeRoomList.setPeriodDayPerAllRoomsList.Count; m++)
                         //{
-                            for (int w = 0; w < objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom.Count; w++)
+                        for (int w = 0; w < objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom.Count; w++)
+                        {
+                            if (objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom[w].day == x && objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom[w].period == y)
                             {
-                                if (objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom[w].day == x && objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom[w].period == y)
-                                {
-                                    objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom.RemoveAt(w);
-                                }
+                                objfreeRoomList.setPeriodDayPerAllRoomsList[i].listPeriodDayPerRoom.RemoveAt(w);
                             }
+                        }
                         //}
                     }
                 }
 
-                
+
 
 
 
@@ -214,9 +214,9 @@ namespace VSUP.Charts
         public string NameOfRoom(int day, int period)
         {
             string nameOfRooms = "";
-            for(int i=0; i< setPeriodDayPerAllRoomsListModifed.Count; i++)
+            for (int i = 0; i < setPeriodDayPerAllRoomsListModifed.Count; i++)
             {
-                for(int j=0; j< setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom.Count; j++)
+                for (int j = 0; j < setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom.Count; j++)
                 {
                     if (setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].day == day && setPeriodDayPerAllRoomsListModifed[i].listPeriodDayPerRoom[j].period == period)
                         nameOfRooms = nameOfRooms + ", " + setPeriodDayPerAllRoomsListModifed[i].room;
